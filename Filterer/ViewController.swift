@@ -23,14 +23,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     
     @IBOutlet var blackView: UIImageView!
-    @IBOutlet var longPressGestureRecognizer: UILongPressGestureRecognizer!
-    let longPressGesture = UILongPressGestureRecognizer()
-    var isLongPressInProgress: Bool = false
     
     @IBOutlet var compareView: UIView!
     @IBOutlet var filterButton: UIButton!
     
-    
+    @IBOutlet weak var longPress: UILongPressGestureRecognizer!
     
     let originImage = UIImage(named:"scenery")!
 
@@ -118,7 +115,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
         filteredImage = rgbaImage.toUIImage()
-        
+        blackView.image = filteredImage
+        let crossFade = CABasicAnimation(keyPath: "contents")
+        crossFade.duration = 0.5
+        crossFade.fromValue = imageView.image
+        crossFade.toValue = nil
+        imageView.image!.animationDidStart(crossFade)
+        blackView.hidden = true
         imageView.image = filteredImage
         
     }
@@ -239,9 +242,15 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBAction func onCompare(sender: UIButton) {
         if filterButton.selected {
             if (sender.selected) {
+                if (filteredImage == nil) {
+                    imageView.image = image
+                    showOriginLabel()
+                    sender.selected = false
+                } else {
                 imageView.image = filteredImage
                 hideOriginalLabel()
                 sender.selected = false
+                }
             } else {
                 imageView.image = image
                 showOriginLabel()
@@ -254,9 +263,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.longPressGesture.minimumPressDuration = 1.0
-        self.longPressGesture.addTarget(self, action: #selector(ViewController.handleLongPress(_:)))
-        self.imageView.addGestureRecognizer(self.longPressGesture)
+        self.view.addGestureRecognizer(longPress)
+        
         showOriginLabel()
         secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
@@ -264,23 +272,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         compareView.backgroundColor = UIColor.blackColor()
         compareView.translatesAutoresizingMaskIntoConstraints = false
         }
-
-    // Long Press Gesture Recognizer
-//    func longPress(lp:UILongPressGestureRecognizer) {
-//        
-//            view.addSubview(compareView)
-//            let bottomConstraint = compareView.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
-//            let leftConstraint = compareView.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
-//            let rightConstraint = compareView.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
-//            let topConstraint = compareView.topAnchor.constraintEqualToAnchor(view.topAnchor)
-//            NSLayoutConstraint.activateConstraints([bottomConstraint, leftConstraint, rightConstraint, topConstraint])
-//            
-//            view.layoutIfNeeded()
-//            filterView.image = filteredImage
-//            originView.image = originImage
-//    }
-    
-
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -404,28 +395,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
     }
-    func handleLongPress(gesture: UILongPressGestureRecognizer) {
-        if self.isLongPressInProgress {
-            NSLog("Test")
-            return
-        }
-        NSLog("Test2")
-
-        self.isLongPressInProgress = true
-        let bottomConstraint = compareView.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
-        let leftConstraint = compareView.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
-        let rightConstraint = compareView.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
-        let topConstraint = compareView.topAnchor.constraintEqualToAnchor(view.topAnchor)
-        NSLayoutConstraint.activateConstraints([bottomConstraint, leftConstraint, rightConstraint, topConstraint])
-        view.layoutIfNeeded()
-        filterView.image = filteredImage
-        originView.image = originImage
-        self.imageView.addSubview(compareView)
-    }
-    
-    override func touchesBegan(touches: Set<UITouch>, withEvent event: UIEvent?) {
-        self.isLongPressInProgress = false
-    }
     
     func showBlackView() {
         view.addSubview(blackView)
@@ -433,6 +402,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.blackView.alpha = 0
         UIView.animateWithDuration(0.4) {
             self.blackView.alpha = 1.0
+        }
+    }
+    
+    @IBAction func longPressGesture(sender: UILongPressGestureRecognizer) {
+        if filterButton.selected {
+            if (filteredImage == nil) {
+                NSLog("Filter Button selected but do nothing")
+            } else {
+            if (sender.state == .Ended) {
+                imageView.image = filteredImage
+                hideOriginalLabel()
+            } else {
+                imageView.image = image
+                showOriginLabel()
+            }
+            }
+        } else {
+            NSLog("Do nothing")
         }
     }
 }

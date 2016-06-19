@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
@@ -143,11 +143,11 @@
                                 <color key="backgroundColor" red="0.0029245746073298662" green="0.0029245746073298662" blue="0.0029245746073298662" alpha="1" colorSpace="calibratedRGB"/>
                                 <gestureRecognizers/>
                                 <connections>
-                                    <outletCollection property="gestureRecognizers" destination="Vfl-u4-ogD" appends="YES" id="hW6-v6-EJs"/>
+                                    <outletCollection property="gestureRecognizers" destination="uc7-2R-AXX" appends="YES" id="ule-nT-jrW"/>
                                 </connections>
                             </imageView>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hno-Iu-kzh">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="248"/>
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
                             </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
@@ -163,6 +163,7 @@
                             <constraint firstItem="Pvh-JO-dw4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mwA-sx-Vxt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zoT-6C-V5r" secondAttribute="bottom" id="n7e-GZ-Sbk"/>
                             <constraint firstAttribute="trailing" secondItem="Pvh-JO-dw4" secondAttribute="trailing" id="odg-ZY-t2s"/>
+                            <constraint firstItem="Pvh-JO-dw4" firstAttribute="bottom" secondItem="Hno-Iu-kzh" secondAttribute="bottom" id="okh-Bn-D8R"/>
                             <constraint firstItem="Pvh-JO-dw4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qFd-93-fk8"/>
                             <constraint firstItem="zoT-6C-V5r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ydl-ha-bNy"/>
                         </constraints>
@@ -170,6 +171,7 @@
                             <mask key="constraints">
                                 <exclude reference="78e-an-ibB"/>
                                 <exclude reference="gff-7a-8Db"/>
+                                <exclude reference="ZtA-iG-EEa"/>
                             </mask>
                         </variation>
                     </view>
@@ -186,7 +188,7 @@
                         <outlet property="filterButton" destination="NPT-qJ-zL2" id="4BC-Go-hF2"/>
                         <outlet property="filterView" destination="HYk-5l-sB5" id="XqW-nE-BCa"/>
                         <outlet property="imageView" destination="Pvh-JO-dw4" id="DXF-PV-1mV"/>
-                        <outlet property="longPressGestureRecognizer" destination="Vfl-u4-ogD" id="hpY-zm-XKa"/>
+                        <outlet property="longPress" destination="uc7-2R-AXX" id="bDC-bP-JGU"/>
                         <outlet property="originLabel" destination="Q5P-Gh-h2P" id="eiZ-yO-09a"/>
                         <outlet property="originView" destination="t72-FC-0hR" id="gID-dx-hM0"/>
                         <outlet property="secondaryMenu" destination="t0M-k1-6ae" id="6qN-bN-lBj"/>
@@ -270,11 +272,6 @@
                         <constraint firstAttribute="bottom" secondItem="dF1-e6-Lf4" secondAttribute="bottom" id="cZn-TL-BEU"/>
                     </constraints>
                 </view>
-                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="Vfl-u4-ogD">
-                    <connections>
-                        <action selector="longPressMove:" destination="BYZ-38-t0r" id="UO1-Hk-Mqc"/>
-                    </connections>
-                </pongPressGestureRecognizer>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" layoutMarginsFollowReadableWidth="YES" text="Original" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Q5P-Gh-h2P">
                     <rect key="frame" x="0.0" y="0.0" width="80" height="44"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -283,6 +280,11 @@
                     <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="uc7-2R-AXX">
+                    <connections>
+                        <action selector="longPressGesture:" destination="BYZ-38-t0r" id="qgZ-TA-5eM"/>
+                    </connections>
+                </pongPressGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-30" y="362"/>
         </scene>
