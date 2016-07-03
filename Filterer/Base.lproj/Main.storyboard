@@ -24,7 +24,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="X2p-Wa-Fo1" propertyAccessControl="none">
-                                                <rect key="frame" x="0.0" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="120" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="170" id="4Gw-6h-isD"/>
                                                     <constraint firstAttribute="height" constant="44" id="NF0-mJ-zkK"/>
@@ -50,7 +50,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NPT-qJ-zL2">
-                                                <rect key="frame" x="150" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="120" y="0.0" width="120" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="DGd-oO-z5D"/>
                                                     <constraint firstAttribute="height" constant="44" id="FhV-GL-3vn"/>
@@ -75,8 +75,12 @@
                                                     <action selector="onFilter:" destination="BYZ-38-t0r" eventType="touchUpInside" id="woR-Hj-8vg"/>
                                                 </connections>
                                             </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdt-ch-WZT">
+                                                <rect key="frame" x="240" y="0.0" width="120" height="44"/>
+                                                <state key="normal" title="Edit"/>
+                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMC-sI-f2t">
-                                                <rect key="frame" x="300" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="360" y="0.0" width="120" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="057-rF-Cl5"/>
                                                     <constraint firstAttribute="height" constant="44" id="DOh-YO-GGe"/>
@@ -102,7 +106,7 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RCO-mM-Vki">
-                                                <rect key="frame" x="450" y="0.0" width="150" height="44"/>
+                                                <rect key="frame" x="480" y="0.0" width="120" height="44"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="44" id="Mkm-XQ-QsN"/>
                                                     <constraint firstAttribute="height" constant="44" id="WaZ-fY-WiK"/>
@@ -146,34 +150,17 @@
                                     <outletCollection property="gestureRecognizers" destination="uc7-2R-AXX" appends="YES" id="ule-nT-jrW"/>
                                 </connections>
                             </imageView>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Hno-Iu-kzh">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="556"/>
-                            </imageView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="Hno-Iu-kzh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="78e-an-ibB"/>
                             <constraint firstItem="zoT-6C-V5r" firstAttribute="top" secondItem="Pvh-JO-dw4" secondAttribute="bottom" id="Bbx-jV-nZu"/>
-                            <constraint firstItem="Hno-Iu-kzh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="Brt-6A-q6h"/>
-                            <constraint firstAttribute="trailing" secondItem="Hno-Iu-kzh" secondAttribute="trailing" id="SlJ-e4-AYU"/>
-                            <constraint firstItem="y3c-jy-aDJ" firstAttribute="top" secondItem="Hno-Iu-kzh" secondAttribute="bottom" constant="-228" id="ZtA-iG-EEa"/>
-                            <constraint firstAttribute="trailing" secondItem="Hno-Iu-kzh" secondAttribute="trailing" id="gff-7a-8Db"/>
                             <constraint firstAttribute="trailing" secondItem="zoT-6C-V5r" secondAttribute="trailing" id="jHr-zF-7fF"/>
-                            <constraint firstItem="Hno-Iu-kzh" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="m5t-ov-kEg"/>
                             <constraint firstItem="Pvh-JO-dw4" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="mwA-sx-Vxt"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="zoT-6C-V5r" secondAttribute="bottom" id="n7e-GZ-Sbk"/>
                             <constraint firstAttribute="trailing" secondItem="Pvh-JO-dw4" secondAttribute="trailing" id="odg-ZY-t2s"/>
-                            <constraint firstItem="Pvh-JO-dw4" firstAttribute="bottom" secondItem="Hno-Iu-kzh" secondAttribute="bottom" id="okh-Bn-D8R"/>
                             <constraint firstItem="Pvh-JO-dw4" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" id="qFd-93-fk8"/>
                             <constraint firstItem="zoT-6C-V5r" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ydl-ha-bNy"/>
                         </constraints>
-                        <variation key="default">
-                            <mask key="constraints">
-                                <exclude reference="78e-an-ibB"/>
-                                <exclude reference="gff-7a-8Db"/>
-                                <exclude reference="ZtA-iG-EEa"/>
-                            </mask>
-                        </variation>
                     </view>
                     <connections>
                         <outlet property="BlueFilter" destination="1xI-yg-Bla" id="wlH-f1-yIV"/>
@@ -182,11 +169,9 @@
                         <outlet property="PurpleFilter" destination="IDC-0b-UXX" id="nko-34-7sL"/>
                         <outlet property="RedFilter" destination="VXd-au-6Lu" id="wyk-CQ-A7f"/>
                         <outlet property="YellowFilter" destination="mR7-7y-bDB" id="Lzr-Ju-nPp"/>
-                        <outlet property="blackView" destination="Hno-Iu-kzh" id="Rne-rP-scW"/>
                         <outlet property="bottomMenu" destination="zoT-6C-V5r" id="WF7-G4-qIj"/>
-                        <outlet property="compareView" destination="DCe-bH-Tfw" id="jg2-8G-zQC"/>
+                        <outlet property="crossOverView" destination="DCe-bH-Tfw" id="3Zv-zc-i9Z"/>
                         <outlet property="filterButton" destination="NPT-qJ-zL2" id="4BC-Go-hF2"/>
-                        <outlet property="filterView" destination="HYk-5l-sB5" id="XqW-nE-BCa"/>
                         <outlet property="imageView" destination="Pvh-JO-dw4" id="DXF-PV-1mV"/>
                         <outlet property="longPress" destination="uc7-2R-AXX" id="bDC-bP-JGU"/>
                         <outlet property="originLabel" destination="Q5P-Gh-h2P" id="eiZ-yO-09a"/>
@@ -202,7 +187,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qD6-2y-1Uk">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-au-6Lu">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-au-6Lu">
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="128"/>
                                     <state key="normal" title="Red"/>
                                     <connections>
@@ -255,13 +240,16 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="dF1-e6-Lf4">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HYk-5l-sB5">
-                                    <rect key="frame" x="0.0" y="0.0" width="120" height="128"/>
-                                </imageView>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="t72-FC-0hR">
-                                    <rect key="frame" x="120" y="0.0" width="120" height="128"/>
+                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" layoutMarginsFollowReadableWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="t72-FC-0hR">
+                                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 </imageView>
                             </subviews>
+                            <constraints>
+                                <constraint firstItem="t72-FC-0hR" firstAttribute="leading" secondItem="dF1-e6-Lf4" secondAttribute="leading" id="3M8-Lt-9er"/>
+                                <constraint firstAttribute="bottom" secondItem="t72-FC-0hR" secondAttribute="bottom" id="cEe-jj-s9G"/>
+                                <constraint firstItem="t72-FC-0hR" firstAttribute="top" secondItem="dF1-e6-Lf4" secondAttribute="top" id="kjB-uc-S6d"/>
+                                <constraint firstAttribute="trailing" secondItem="t72-FC-0hR" secondAttribute="trailing" id="zZ3-4R-gFY"/>
+                            </constraints>
                         </stackView>
                     </subviews>
                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>

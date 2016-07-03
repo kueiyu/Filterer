@@ -19,12 +19,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet var originLabel: UILabel!
     
     @IBOutlet var originView: UIImageView!
-    @IBOutlet var bottomMenu: UIView!
+    @IBOutlet var crossOverView: UIView!
 
     
-    @IBOutlet var blackView: UIImageView!
-    
-    @IBOutlet var compareView: UIView!
+    @IBOutlet var bottomMenu: UIView!
+
     @IBOutlet var filterButton: UIButton!
     
     @IBOutlet weak var longPress: UILongPressGestureRecognizer!
@@ -75,13 +74,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 //                NSLog("new: %d, origin: %d", rgbaImage.pixels[index].red, originPixel.red)
             }
         }
+        
         filteredImage = rgbaImage.toUIImage()
         
-//        NSLog("on red filter")
-        
-        imageView.image = filteredImage
-        
-            }
+        showCrossOver()
+    }
     
     @IBAction func onGreenFilter(sender: UIButton) {
         hideOriginalLabel()
@@ -115,15 +112,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
         filteredImage = rgbaImage.toUIImage()
-        blackView.image = filteredImage
-        let crossFade = CABasicAnimation(keyPath: "contents")
-        crossFade.duration = 0.5
-        crossFade.fromValue = imageView.image
-        crossFade.toValue = nil
-        imageView.image!.animationDidStart(crossFade)
-        blackView.hidden = true
-        imageView.image = filteredImage
-        
+        showCrossOver()
     }
     
     @IBAction func onBlueFilter(sender: UIButton) {
@@ -158,8 +147,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
         filteredImage = rgbaImage.toUIImage()
-        
-        imageView.image = filteredImage
+        showCrossOver()
     }
     
     @IBAction func onYellowFilter(sender: UIButton) {
@@ -195,8 +183,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
         filteredImage = rgbaImage.toUIImage()
-        
-        imageView.image = filteredImage
+        showCrossOver()
 
     }
     
@@ -232,9 +219,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         }
         filteredImage = rgbaImage.toUIImage()
-        
-        imageView.image = filteredImage
-
+        showCrossOver()
     }
     
     //  Compare Button
@@ -247,7 +232,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                     showOriginLabel()
                     sender.selected = false
                 } else {
-                imageView.image = filteredImage
+                showCrossOver()
                 hideOriginalLabel()
                 sender.selected = false
                 }
@@ -266,11 +251,13 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         self.view.addGestureRecognizer(longPress)
         
         showOriginLabel()
+        
         secondaryMenu.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
         secondaryMenu.translatesAutoresizingMaskIntoConstraints = false
-        //use it whenever you don't want the autoresizing func happen.
-        compareView.backgroundColor = UIColor.blackColor()
-        compareView.translatesAutoresizingMaskIntoConstraints = false
+        
+        crossOverView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0)
+        crossOverView.translatesAutoresizingMaskIntoConstraints = false
+        
         }
     
     override func didReceiveMemoryWarning() {
@@ -320,13 +307,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         if let image = info[UIImagePickerControllerOriginalImage] as? UIImage {
             imageView.image = image
             hideOriginalLabel()
-            showBlackView()
-            self.blackView.alpha = 0
-            UIView.animateWithDuration(0.4) {
-                self.blackView.alpha = 1.0
-            }
-            blackView.removeFromSuperview()
-
         }
     }
     
@@ -357,12 +337,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         view.layoutIfNeeded()
         
-        self.secondaryMenu.alpha = 0
+        self.secondaryMenu.alpha = 0.5
         UIView.animateWithDuration(0.4) {
             self.secondaryMenu.alpha = 1.0
-            
         }
-        
     }
     
     func hideSecondaryMenu() {
@@ -376,14 +354,35 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    func showCrossOver() {
+        self.originView.image = self.imageView.image
+        self.imageView.image = filteredImage
+        view.addSubview(crossOverView)
+        let bottomCrossConstraint = crossOverView.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
+        let leftCrossConstraint = crossOverView.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
+        let rightCrossConstraint = crossOverView.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
+        let topCrossConstraint = crossOverView.topAnchor.constraintEqualToAnchor(view.topAnchor)
+        
+        NSLayoutConstraint.activateConstraints([bottomCrossConstraint, leftCrossConstraint, rightCrossConstraint, topCrossConstraint])
+        view.layoutIfNeeded()
+
+        self.crossOverView.alpha = 1
+
+        UIView.animateWithDuration(3, animations: {
+            self.crossOverView.alpha = 0
+        }) { completed in
+            if completed == true {
+                self.crossOverView.removeFromSuperview()
+            }
+        }
+    }
+    
     func showOriginLabel() {
         view.addSubview(originLabel)
         self.originLabel.alpha = 0
         UIView.animateWithDuration(0.4) {
             self.originLabel.alpha = 1.0
-            
         }
-        
     }
     
     func hideOriginalLabel() {
@@ -393,15 +392,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if completed == true {
                 self.originLabel.removeFromSuperview()
             }
-        }
-    }
-    
-    func showBlackView() {
-        view.addSubview(blackView)
-        blackView.backgroundColor = UIColor.blackColor().colorWithAlphaComponent(1.0)
-        self.blackView.alpha = 0
-        UIView.animateWithDuration(0.4) {
-            self.blackView.alpha = 1.0
         }
     }
     
