@@ -13,15 +13,19 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     var filteredImage:UIImage? // not exist until we let it be defined
     
+    @IBOutlet weak var editButton: UIButton!
+    var tempImage:UIImage?
+
     @IBOutlet var imageView: UIImageView!
     @IBOutlet var filterView: UIImageView!
     @IBOutlet var secondaryMenu: UIView!
     @IBOutlet var originLabel: UILabel!
     
+    @IBOutlet weak var intensitySlide: UISlider!
+    @IBOutlet var intensityView: UIView!
     @IBOutlet var originView: UIImageView!
     @IBOutlet var crossOverView: UIView!
 
-    
     @IBOutlet var bottomMenu: UIView!
 
     @IBOutlet var filterButton: UIButton!
@@ -29,7 +33,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     @IBOutlet weak var longPress: UILongPressGestureRecognizer!
     
     let originImage = UIImage(named:"scenery")!
-
     let image = UIImage(named: "scenery")!
     
     //Filter Buttons Area Start
@@ -76,7 +79,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         filteredImage = rgbaImage.toUIImage()
-        
         showCrossOver()
     }
     
@@ -184,7 +186,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         filteredImage = rgbaImage.toUIImage()
         showCrossOver()
-
     }
     
     @IBAction func onPurpleFilter(sender: UIButton) {
@@ -257,6 +258,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         
         crossOverView.backgroundColor = UIColor.clearColor().colorWithAlphaComponent(0)
         crossOverView.translatesAutoresizingMaskIntoConstraints = false
+        
+        
+        intensityView.backgroundColor = UIColor.whiteColor().colorWithAlphaComponent(0.5)
+        intensityView.translatesAutoresizingMaskIntoConstraints = false
         
         }
     
@@ -377,6 +382,34 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
     
+    func showIntensitySlide() {
+        view.addSubview(intensityView)
+        let bottomSlideConstraint = intensityView.bottomAnchor.constraintEqualToAnchor(bottomMenu.topAnchor)
+        let leftSlideConstraint = intensityView.leftAnchor.constraintEqualToAnchor(view.leftAnchor)
+        let rightSlideConstraint = intensityView.rightAnchor.constraintEqualToAnchor(view.rightAnchor)
+        let heightSlideConstraint = intensityView.heightAnchor.constraintEqualToConstant(44)
+        
+        NSLayoutConstraint.activateConstraints([bottomSlideConstraint, leftSlideConstraint, rightSlideConstraint, heightSlideConstraint])
+        
+        view.layoutIfNeeded()
+        
+        self.intensityView.alpha = 0.5
+        UIView.animateWithDuration(0.4) {
+            self.intensityView.alpha = 1.0
+        }
+    }
+    
+    func hideIntensitySlide() {
+        
+        UIView.animateWithDuration(0.4, animations: {
+            self.intensityView.alpha = 0
+        }) { completed in
+            if completed == true {
+                self.intensityView.removeFromSuperview()
+            }
+        }
+    }
+    
     func showOriginLabel() {
         view.addSubview(originLabel)
         self.originLabel.alpha = 0
@@ -411,5 +444,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         } else {
             NSLog("Do nothing")
         }
+    }
+    @IBAction func onEditButtonClick(sender: UIButton) {
+        if filterButton.selected {
+            if (sender.selected) {
+                hideIntensitySlide()
+                showSecondaryMenu()
+                sender.selected = false
+                self.tempImage = self.imageView.image
+            } else {
+                hideSecondaryMenu()
+                showIntensitySlide()
+                sender.selected = true
+            }
+        } else {
+            NSLog("Couldn't edit the intensity")
+        }
+    }
+    @IBAction func onIntensitySlide(sender: UISlider) {
+        
     }
 }

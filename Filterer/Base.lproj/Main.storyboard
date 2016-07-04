@@ -77,7 +77,13 @@
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdt-ch-WZT">
                                                 <rect key="frame" x="240" y="0.0" width="120" height="44"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="44" id="OWh-yw-5Dk"/>
+                                                </constraints>
                                                 <state key="normal" title="Edit"/>
+                                                <connections>
+                                                    <action selector="onEditButtonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Axa-bJ-tzy"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sMC-sI-f2t">
                                                 <rect key="frame" x="360" y="0.0" width="120" height="44"/>
@@ -171,8 +177,11 @@
                         <outlet property="YellowFilter" destination="mR7-7y-bDB" id="Lzr-Ju-nPp"/>
                         <outlet property="bottomMenu" destination="zoT-6C-V5r" id="WF7-G4-qIj"/>
                         <outlet property="crossOverView" destination="DCe-bH-Tfw" id="3Zv-zc-i9Z"/>
+                        <outlet property="editButton" destination="tdt-ch-WZT" id="f3G-6A-p2w"/>
                         <outlet property="filterButton" destination="NPT-qJ-zL2" id="4BC-Go-hF2"/>
                         <outlet property="imageView" destination="Pvh-JO-dw4" id="DXF-PV-1mV"/>
+                        <outlet property="intensitySlide" destination="Glp-ly-Dm9" id="YwT-Vn-w7x"/>
+                        <outlet property="intensityView" destination="lFd-Ty-UeJ" id="Xph-Ly-qXT"/>
                         <outlet property="longPress" destination="uc7-2R-AXX" id="bDC-bP-JGU"/>
                         <outlet property="originLabel" destination="Q5P-Gh-h2P" id="eiZ-yO-09a"/>
                         <outlet property="originView" destination="t72-FC-0hR" id="gID-dx-hM0"/>
@@ -187,7 +196,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="qD6-2y-1Uk">
                             <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                             <subviews>
-                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-au-6Lu">
+                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VXd-au-6Lu">
                                     <rect key="frame" x="0.0" y="0.0" width="48" height="128"/>
                                     <state key="normal" title="Red"/>
                                     <connections>
@@ -268,6 +277,25 @@
                     <color key="textColor" red="1" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <view contentMode="scaleToFill" id="lFd-Ty-UeJ">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Glp-ly-Dm9">
+                            <rect key="frame" x="-2" y="0.0" width="244" height="129"/>
+                            <connections>
+                                <action selector="onIntensitySlide:" destination="BYZ-38-t0r" eventType="valueChanged" id="eI2-DI-V21"/>
+                            </connections>
+                        </slider>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="bottom" secondItem="Glp-ly-Dm9" secondAttribute="bottom" id="JFA-l5-ZIv"/>
+                        <constraint firstItem="Glp-ly-Dm9" firstAttribute="leading" secondItem="lFd-Ty-UeJ" secondAttribute="leading" id="U4b-hs-6Lo"/>
+                        <constraint firstAttribute="trailing" secondItem="Glp-ly-Dm9" secondAttribute="trailing" id="diT-gA-KMi"/>
+                        <constraint firstItem="Glp-ly-Dm9" firstAttribute="top" secondItem="lFd-Ty-UeJ" secondAttribute="top" id="dyd-AX-RRV"/>
+                    </constraints>
+                </view>
                 <pongPressGestureRecognizer allowableMovement="10" minimumPressDuration="0.5" id="uc7-2R-AXX">
                     <connections>
                         <action selector="longPressGesture:" destination="BYZ-38-t0r" id="qgZ-TA-5eM"/>
